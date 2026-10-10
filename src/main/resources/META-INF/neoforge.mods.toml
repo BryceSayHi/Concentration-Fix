@@ -6,6 +6,7 @@ license = "MIT"
 modId = "concentration_fix"
 version = "${version}"
 displayName = "Concentration Fix"
+logoFile = "cfix.png"
 authors = "Bike"
 description = '''Fixes Concentration's Sodium 0.8.x Integration.'''
 
