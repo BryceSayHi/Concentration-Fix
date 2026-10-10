@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.141'
+}
+
+version = mod_version
+group = 'dev.concentrationfix'
+
+base {
+    archivesName = 'concentration-fix'
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+}
+
+neoForge {
+    version = neoforge_version
+}
+
+repositories {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'CaffeineMC'
+                url = 'https://maven.caffeinemc.net/releases'
+            }
+        }
+        filter { includeGroup 'net.caffeinemc' }
+    }
+}
+
+dependencies {
+    compileOnly "net.caffeinemc:sodium-neoforge-api:${sodium_version}+mc${minecraft_version}"
+    compileOnly files('libs/concentration-neoforge-1.21-2.3.0.jar')
+}
+
+processResources {
+    inputs.property 'version', version
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand 'version': version
+    }
+}
